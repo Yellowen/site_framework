@@ -3,6 +3,8 @@ class CreateSiteFrameworkDomains < ActiveRecord::Migration
     create_table :site_framework_domains do |t|
       t.string :name
       t.integer :site_id
+      t.integer :parent_id
+      t.boolean :alias
 
       t.timestamps
     end

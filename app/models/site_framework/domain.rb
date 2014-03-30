@@ -1,6 +1,13 @@
 module SiteFramework
+  # This model represent a **Domain**. Each domain
+  # belongs to a [Site] model and may or may not
+  # belongs to another  **Domain**
   class Domain < ActiveRecord::Base
+
     belongs_to :site
+
+    # Self relation
+    belongs_to :parent, :class_name => self.class
 
     validates_associated :site
     validates :name, :presence => true,
