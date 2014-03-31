@@ -13,24 +13,33 @@ module SiteFramework
     def call(env)
       # Create a method called domain which will return the current domain
       # name
-      Rails.application.class.send :define_method, 'domain_name' do
+      Rails.application.send :define_singleton_method, 'domain_name' do
         env['SERVER_NAME']
       end
 
-      Rails.application.class.send :define_method, 'domain' do
+      Rails.application.send :define_singleton_method, 'domain' do
         domain = nil
-        if Rails.application.class.class_variable_defined? :domain
-          domain = Rails.application.class.class_variable_get :domain
+        if Rails.application.instance_variable_defined? '@domain'
+          domain = Rails.application.instance_variable_get '@domain'
+          if respond_to? :logger
+            logger.info "`domain` is defined, value #{domain}"
+          end
         end
+
         if domain.nil?
-          domain_obj = Domain.find_by(:name, domain).include(:site)
-          Rails.application.class.class_variable_set :domain, domain_obj
+          domain_obj = Domain.find_by(:name => Rails.application.domain_name)
+          if respond_to? :logger
+            logger.debug '`domain` is nil'
+            logger.warn "Can't find domain object of `#{Rails.application.domain_name}`"
+          end
+          Rails.application.instance_variable_set '@domain', domain_obj
           domain = domain_obj
         end
+
         domain
       end
 
-      Rails.application.class.send :define_method, 'site' do
+      Rails.application.send :define_singleton_method, 'site' do
         site = nil
         unless Rails.application.domain.nil?
           site = Rails.application.domain.site
