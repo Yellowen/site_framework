@@ -1,4 +1,4 @@
-
+# Main module of `site_framework` gem
 module SiteFramework
 end
 
