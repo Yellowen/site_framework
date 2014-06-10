@@ -27,7 +27,7 @@ module SiteFramework
         end
 
         if domain.nil?
-          domain_obj = Domain.find_by(:name => Rails.application.domain_name)
+          domain_obj = Domain.to_adapter.find_by(:name => Rails.application.domain_name)
           if respond_to? :logger
             logger.debug '`domain` is nil'
             logger.warn "Can't find domain object of `#{Rails.application.domain_name}`"
