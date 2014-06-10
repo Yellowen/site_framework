@@ -2,7 +2,7 @@ module SiteFramework
   # This model represent a **Domain**. Each domain
   # belongs to a [Site] model and may or may not
   # belongs to another  **Domain**
-  class Domain < (defined? ActiveRecord ? ActiveRecord::Base : Object)
+  class Domain < (defined?(ActiveRecord) ? ActiveRecord::Base : Object)
 
     if defined? Mongoid
       include Mongoid::Document

@@ -5,7 +5,6 @@ end
 require "site_framework/engine"
 require 'site_framework/railtie'
 require 'site_framework/orm'
-
 case SiteFramework::ORM.current_orm
 when 'active_record'
   require 'site_framework/active_record/migration'

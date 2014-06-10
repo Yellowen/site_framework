@@ -3,7 +3,8 @@ module SiteFramework
   # [SiteFramework::Middleware] will check for a site
   # with current domain of request and attach the object
   # to global **Rails** object
-  class Site < (defined? ActiveRecord ? ActiveRecord::Base : Object)
+  puts ">>>>>>>>>>>>>>>> #{defined?(ActiveRecord)}"
+  class Site < (defined?(ActiveRecord) ? ActiveRecord::Base : Object)
 
     if defined? Mongoid
       include Mongoid::Document
