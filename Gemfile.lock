@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    site_framework (1.0.0)
+    site_framework (1.0.1)
       orm_adapter
-      railties (~> 4.0.2)
+      railties (~> 4.0.4)
 
 GEM
   remote: http://rubygems.org/
