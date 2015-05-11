@@ -4,6 +4,8 @@ module SiteFramework
   # belongs to another  **Domain**
   class Domain < (defined?(ActiveRecord) ? ActiveRecord::Base : Object)
 
+    PATTERN = /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+
     if defined? Mongoid
       include Mongoid::Document
       include Mongoid::Timestamps
@@ -29,8 +31,13 @@ module SiteFramework
       validates_associated :site
     end
 
-    validates(:name, presence: true,
-              format: { with: /\A(?:[a-z0-9\-]+\.)+[a-z]{2,4}\z/i })
+    validates(:name, presence: true, format: { with: PATTERN })
     validates_uniqueness_of :name
+
+    before_save :normalize_name
+
+    def normalize_name
+      self.name = name.donwcase
+    end
   end
 end
