@@ -6,6 +6,5 @@ module SiteFramework
       belongs_to :domain
       default_scope -> { where(:domain => Rails.application.domain) }
     end
-
   end
 end
