@@ -29,30 +29,6 @@ module SiteFramework
         end
       end
 
-      Rails.application.send :define_singleton_method, 'domain' do
-        domain = nil
-        if Rails.application.instance_variable_defined? '@domain'
-          domain = Rails.application.instance_variable_get '@domain'
-          if respond_to? :logger
-            logger.info "`domain` is defined, value #{domain}"
-          end
-        end
-
-        if domain.nil?
-          # Fetch domain by calling **fetch_domain** method on
-          # **Rails.application**
-          domain_obj = fetch_domain
-          if respond_to? :logger
-            logger.debug '`domain` is nil'
-            logger.warn "Can't find domain object of `#{Rails.application.domain_name}`"
-          end
-          Rails.application.instance_variable_set '@domain', domain_obj
-          domain = domain_obj
-        end
-
-        domain
-      end
-
       Rails.application.send :define_singleton_method, 'site' do
         site = nil
         unless Rails.application.domain.nil?

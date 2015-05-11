@@ -8,9 +8,9 @@ module SiteFramework
       include Mongoid::Document
       include Mongoid::Timestamps
 
-      field :name, :type => String
-      field :parent, :type => String
-      field :alias, :type => Boolean
+      field :name,   type: String
+      field :parent, type: String,  default: nil
+      field :alias,  type: Boolean, default: false
 
       embedded_in :site
 
@@ -25,12 +25,12 @@ module SiteFramework
       belongs_to :site
 
       # Self relation
-      belongs_to :parent, :class_name => self.class
+      belongs_to :parent, class_name: self.class
       validates_associated :site
     end
 
-    validates :name, :presence => true,
-       :format => { :with => /\A(?:[a-z0-9\-]+\.)+[a-z]{2,4}\z/i }
+    validates(:name, presence: true,
+              format: { with: /\A(?:[a-z0-9\-]+\.)+[a-z]{2,4}\z/i })
     validates_uniqueness_of :name
   end
 end
