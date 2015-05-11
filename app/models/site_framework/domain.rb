@@ -4,7 +4,7 @@ module SiteFramework
   # belongs to another  **Domain**
   class Domain < (defined?(ActiveRecord) ? ActiveRecord::Base : Object)
 
-    PATTERN = /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+    PATTERN = /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
 
     if defined? Mongoid
       include Mongoid::Document
