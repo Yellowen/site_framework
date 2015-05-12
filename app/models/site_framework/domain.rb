@@ -37,7 +37,7 @@ module SiteFramework
     before_save :normalize_name
 
     def normalize_name
-      self.name = name.donwcase
+      self.name = name.downcase
     end
   end
 end
