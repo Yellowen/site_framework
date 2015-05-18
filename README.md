@@ -1,5 +1,6 @@
-# SiteFramework - [![Gem Version](https://badge.fury.io/rb/site_framework.png)](http://badge.fury.io/rb/site_framework)
-
+# SiteFramework
+[![Gem Version](https://badge.fury.io/rb/site_framework.png)](http://badge.fury.io/rb/site_framework)
+[![Downloads](https://img.shields.io/gem/dt/site_framework.svg)](http://rubygems/gems/site_framework)
 A site framework for Ruby on Rails web framework inspired by Django site fremework.
 The idea of this gem to transparently make Rails apps to work with different domains.
 
