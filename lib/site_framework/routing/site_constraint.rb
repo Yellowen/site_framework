@@ -16,6 +16,7 @@ class SiteFramework::Routing::SiteConstraint
       define_fetch_domain_method request.host
       define_domain
       define_site
+      initialize_site_default_state
       true
     else
 
@@ -77,5 +78,11 @@ class SiteFramework::Routing::SiteConstraint
         Site.where('domains.name' => domain).domains.first
       end
     end
+  end
+
+  def initialize_site_default_state
+    site = Rails.application.site
+
+    site.try(:before_dispatch)
   end
 end
