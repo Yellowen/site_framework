@@ -68,6 +68,11 @@ class SiteFramework::Routing::SiteConstraint
       site = Rails.application.domain.site unless Rails.application.domain.nil?
       site
     end
+
+    Rails.application.send :define_singleton_method, 'site_activated?' do
+      return true if Rails.application.try(:site)
+      false
+    end
   end
 
   def define_fetch_domain_method(domain)
