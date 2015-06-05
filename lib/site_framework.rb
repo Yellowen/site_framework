@@ -6,6 +6,7 @@ module SiteFramework
   end
 end
 
+require 'site_framework/helpers'
 require 'site_framework/engine'
 require 'site_framework/railtie'
 require 'site_framework/orm'
