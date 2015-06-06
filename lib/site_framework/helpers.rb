@@ -1,36 +1,35 @@
+require 'site_framework/current_state'
+
 module SiteFramework
-  module Helpers
-    extends ActiveSupport::Concern
+
+  # Return the current site, domain, domain_name
+  # if it wasn't the default site
+  module DummyHelper
 
     def current_site
-      @@site
+      SiteFramework::CurrentState.instance.site
     end
 
     def current_domain
-      @@domain
+      SiteFramework::CurrentState.instance.domain
     end
 
     def current_domain_name
-      @@domain_name
+      SiteFramework::CurrentState.instance.domain_name
     end
 
     def default_site?
-      return true if @@site.nil?
+      return true if SiteFramework::CurrentState.instance.site.nil?
       false
     end
+  end
 
-    class ClassMethods
-      def current_site=(site)
-        @@site = site
-      end
+  module Helpers
+    extend ActiveSupport::Concern
+    include SiteFramework::DummyHelper
 
-      def current_domain=(domain)
-        @@domain = domain
-      end
-
-      def current_domain_name=(name)
-        @@domain_name = name
-      end
+    module ClassMethods
+      include SiteFramework::DummyHelper
     end
   end
 end
