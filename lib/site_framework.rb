@@ -13,8 +13,7 @@ end
 require 'site_framework/engine'
 require 'site_framework/railtie'
 require 'site_framework/orm'
-require 'site_framework/routing/site_constraint'
-require 'site_framework/routing/sites'
+require 'site_framework/routing'
 require 'site_framework/action_dispatch'
 
 case SiteFramework::ORM.current_orm

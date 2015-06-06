@@ -1,8 +1,14 @@
 module SiteFramework::Routing
   module Sites
-    def sites(&block)
+    def sites
       constraints(SiteFramework::Routing::SiteConstraint.new) do
-        block.call
+        yield
+      end
+    end
+
+    def default_site
+      constraints(SiteFramework::Routing::DefaultConstraint.new) do
+        yield
       end
     end
   end
