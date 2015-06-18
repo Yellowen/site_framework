@@ -27,7 +27,7 @@ module SiteFramework
       belongs_to :site
 
       # Self relation
-      belongs_to :parent, class_name: self.class
+      belongs_to :parent, class_name: self.class.to_s
       validates_associated :site
     end
 

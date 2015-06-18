@@ -2,8 +2,9 @@ class SiteFramework::Routing::SiteConstraint
 
   attr_reader :logger
 
-  def initialize
+  def initialize(mapper)
     @logger = Rails.logger
+    @mapper = mapper
   end
 
   def domain(name)
@@ -14,7 +15,6 @@ class SiteFramework::Routing::SiteConstraint
     else
       nil
     end
-
   end
 
   def matches?(request)
@@ -24,6 +24,7 @@ class SiteFramework::Routing::SiteConstraint
       logger.debug("''#{@domain_name}' matched.")
       setup(domain_obj)
       initialize_site_default_state
+
       true
     else
       logger.info("Domain name '#{request.host}' does not match with any exist domains")
@@ -41,6 +42,6 @@ class SiteFramework::Routing::SiteConstraint
   end
 
   def initialize_site_default_state
-    @site.try(:before_dispatch)
+    @site.try(:before_dispatch, @mapper)
   end
 end

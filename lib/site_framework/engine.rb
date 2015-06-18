@@ -9,5 +9,12 @@ module SiteFramework
       g.test_framework :rspec
     end
 
+    @@default_domains = ['localhost']
+
+    mattr_accessor :default_domains
+
+    def self.setup
+      yield self
+    end
   end
 end
