@@ -56,12 +56,27 @@ Just use `sites` DSL in your `routes.rb`. e.g:
 ```ruby
 Rails.application.routes.draw do
 
+  # Share routes
   get 'home/index'
 
   # All the routes defined in this section will be domain aware.
-  sites do
+  sites(self) do
     root 'home#index'
   end
+
+  default_site(self) do
+    # routs for default site
+  end
+end
+```
+Note: You can provide default domains for **SiteFramework** via an
+initializer like this:
+
+```ruby
+SiteFramework.setup do |config|
+
+  config.default_domains = ['localhost', 'example.com']
+
 end
 ```
 
