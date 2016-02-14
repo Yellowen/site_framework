@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency 'railties', '~> 4'
+  s.add_dependency 'railties', '>3'
   s.add_dependency 'orm_adapter'
 
   s.add_development_dependency 'rspec'
