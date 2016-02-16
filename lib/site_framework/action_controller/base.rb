@@ -6,7 +6,7 @@ ActionController::Base.class_eval do
     unless request.site
       # We are in site namespace
       unless request.site.default_template.blank?
-        append_view_path[request.site.default_template]
+        prepend_view_path[request.site.default_template]
       end
     end
   end
