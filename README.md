@@ -82,6 +82,23 @@ end
 
 **Personally I prefer this (B) option since it's more Railish.**
 
+### Access Current Site and Domain in Controllers
+After installing `site_framework` you'll have `site`, `domain` and `domain_name` methods
+on your `request` objects to access the respected models. But if current request belongs
+to default site the return value of these methods would be `nil`
+
+### Access Current Site/Domain elsewhre
+You can access to current `site`, `domain` and `domain_name` via `SiteFramework::CurrentState` object
+every where just like this:
+
+```ruby
+SiteFramework::CurrentState.instance.site
+SiteFramework::CurrentState.instance.domain
+SiteFramework::CurrentState.instance.domain_name
+```
+
+In case of default site these methods will return `nil`
+
 ### Model Concern
 **SiteFramework** provides an **ActiveSupport** concern which transparently
 makes your models aware of the current **Site** and **Domain**. By includeing
@@ -92,6 +109,13 @@ This way you can use external gems with your multi-site application easily.
 All you have to do is to open there models and include the given concern.
 
 Piece of cake. right?
+
+### Default template
+Since `v4.0` site model contains a field aka `default_template` which is blank by default.
+By default if current request does not belongs to default site and `default_template` is not
+blank, **site framework** will prepend the `default_template` to `view_path` of your application.
+
+By this feature each site can have their own set of views.
 
 ## Contributing
 
