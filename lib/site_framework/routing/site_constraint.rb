@@ -25,6 +25,20 @@ class SiteFramework::Routing::SiteConstraint
       setup(domain_obj)
       initialize_site_default_state
 
+      request.instance_eval do
+        def site
+          domain_obj.site
+        end
+
+        def domain
+          domain_obj.domain
+        end
+
+        def domamin_name
+          domain_obj.domain_name
+        end
+      end
+
       true
     else
       logger.info("Domain name '#{request.host}' does not match with any exist domains")

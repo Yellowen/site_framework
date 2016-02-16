@@ -6,7 +6,7 @@ module SiteFramework::Routing
       end
     end
 
-    def default_site(mapper, defaults)
+    def default_site(mapper, defaults = nil)
       constraint = SiteFramework::Routing::DefaultConstraint.new(mapper,
                                                                  defaults)
       constraints(constraint) do

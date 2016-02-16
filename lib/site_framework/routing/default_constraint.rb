@@ -19,6 +19,18 @@ class SiteFramework::Routing::DefaultConstraint
       SiteFramework::CurrentState.instance.domain      = nil
       SiteFramework::CurrentState.instance.site        = nil
 
+      request.instance_eval do
+        def site
+        end
+
+        def domain
+        end
+
+        def domamin_name
+        end
+
+      end
+
       true
     else
       logger.info("Domain name '#{request.host}' does not match with any exist domains")

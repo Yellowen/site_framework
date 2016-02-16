@@ -15,6 +15,8 @@ require 'site_framework/railtie'
 require 'site_framework/orm'
 require 'site_framework/routing'
 require 'site_framework/action_dispatch'
+require 'site_framework/action_controller/base'
+
 
 case SiteFramework::ORM.current_orm
 when 'active_record'
