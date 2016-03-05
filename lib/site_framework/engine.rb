@@ -10,8 +10,10 @@ module SiteFramework
     end
 
     @@default_domains = ['localhost']
-
     mattr_accessor :default_domains
+
+    mattr_accessor :view_path_prefix
+    @@view_path_prefix = "app/views"
 
     def self.setup
       yield self
