@@ -12,6 +12,8 @@ module SiteFramework
     @@default_domains = ['localhost']
     mattr_accessor :default_domains
 
+    # This option allows developers to specify the prefix of path
+    # which they wanted to prepend to view_paths array
     mattr_accessor :view_path_prefix
     @@view_path_prefix = "app/views"
 
