@@ -4,8 +4,9 @@ module SiteFramework
 
     included do
       belongs_to :domain, class_name: '::SiteFramework::Domain'
-      domain = SiteFramework::CurrentState.instance.domain.id
-      default_scope -> { where(domain_id: domain) }
+      default_scope -> {
+        where(domain_id: SiteFramework::CurrentState.instance.domain)
+      }
     end
   end
 end
