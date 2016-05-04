@@ -33,7 +33,7 @@ make them domain aware (ActiveRecord Only). e.g in your migration:
 
 ```ruby
 # Make posts table domain aware
-domain_aware(:posts)
+site_aware(:posts)
 ```
 
 If you're using **Mongoid** just add a reference to **SiteFramework::Domain** in your model.
@@ -73,7 +73,7 @@ Note: You can provide default domains for **SiteFramework** via an
 initializer like this:
 
 ```ruby
-SiteFramework.setup do |config|
+SiteFramework::Engine.setup do |config|
 
   config.default_domains = ['localhost', 'example.com']
 
@@ -102,7 +102,7 @@ In case of default site these methods will return `nil`
 ### Model Concern
 **SiteFramework** provides an **ActiveSupport** concern which transparently
 makes your models aware of the current **Site** and **Domain**. By includeing
-`SiteFramework::DomainAware` into your model, default scope of your model will
+`SiteFramework::SiteAware` into your model, default scope of your model will
 change to return only records which belongs to current **Site**.
 
 This way you can use external gems with your multi-site application easily.

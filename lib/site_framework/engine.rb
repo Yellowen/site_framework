@@ -9,13 +9,16 @@ module SiteFramework
       g.test_framework :rspec
     end
 
-    @@default_domains = ['localhost']
-    mattr_accessor :default_domains
+
+    mattr_accessor :default_domains do
+      ['localhost']
+    end
 
     # This option allows developers to specify the prefix of path
     # which they wanted to prepend to view_paths array
-    mattr_accessor :view_path_prefix
-    @@view_path_prefix = "app/views"
+    mattr_accessor :view_path_prefix do
+      'app/views'
+    end
 
     def self.setup
       yield self
