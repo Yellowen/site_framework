@@ -2,14 +2,19 @@ require 'site_framework/helpers'
 
 # Main module of `site_framework` gem
 module SiteFramework
-  autoload :Middleware, 'site_framework/middleware'
+  autoload :Middleware ,  'site_framework/middleware'
+  autoload :DomainAware,  'site_framework/active_record/concerns'
+  autoload :SiteAware,    'site_framework/active_record/concerns'
+  autoload :CurrentState, 'site_framework/current_state'
+  #autoload :Engine,       'site_framework/engine'
+
   include  SiteFramework::Helpers
 
   module Routing
   end
 end
 
-require 'site_framework/current_state'
+#require 'site_framework/current_state'
 require 'site_framework/engine'
 require 'site_framework/railtie'
 require 'site_framework/orm'

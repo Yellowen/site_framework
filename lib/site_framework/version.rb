@@ -1,3 +1,3 @@
 module SiteFramework
-  VERSION = '4.1.2'
+  VERSION = '4.2.0'
 end

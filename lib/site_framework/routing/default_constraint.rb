@@ -18,7 +18,7 @@ class SiteFramework::Routing::DefaultConstraint
       true
 
     else
-      logger.info("Domain name '#{request.host}' does not match with any exist domains")
+      logger.warn("Domain name '#{request.host}' does not match with any exist domains")
       patch_request(request)
       false
     end
