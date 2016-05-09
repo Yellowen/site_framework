@@ -4,7 +4,7 @@ module SiteFramework
   # belongs to another  **Domain**
   class Domain < (defined?(ActiveRecord) ? ActiveRecord::Base : Object)
 
-    PATTERN = /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
+    PATTERN = /\A[a-z0-9]*(\.?[a-z0-9]+)\.[a-z]{2,5}(:[0-9]{1,5})?(\/.)?$/ix
 
     if defined? Mongoid
       include Mongoid::Document
@@ -31,7 +31,9 @@ module SiteFramework
       validates_associated :site
     end
 
-    validates(:name, presence: true, format: { with: PATTERN })
+    validates :name, presence: true, if: :valid_domain_name?
+
+
     validates_uniqueness_of :name
 
     before_save :normalize_name
@@ -39,5 +41,15 @@ module SiteFramework
     def normalize_name
       self.name = name.downcase
     end
+
+    def valid_domain_name?
+      if read_attribute :alias
+        false unless name =~ PATTERN
+        # TODO: Check the owner of domain
+      else
+        true
+      end
+    end
+
   end
 end
