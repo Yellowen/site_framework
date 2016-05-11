@@ -1,6 +1,9 @@
 class CreateSiteFrameworkSites < ActiveRecord::Migration
   def change
-    create_table :site_framework_sites do |t|
+    args = {}
+    args[:id] = :uuid if SiteFramework::Engine.use_uuid
+
+    create_table :site_framework_sites, **args do |t|
       t.string :title
       t.string :description
 

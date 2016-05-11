@@ -20,6 +20,10 @@ module SiteFramework
       'app/views'
     end
 
+    mattr_accessor :use_uuid do
+      false
+    end
+
     def self.setup
       yield self
     end

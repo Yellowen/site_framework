@@ -1,9 +1,17 @@
 class CreateSiteFrameworkDomains < ActiveRecord::Migration
   def change
-    create_table :site_framework_domains do |t|
+    args = {}
+    args[:id] = :uuid if SiteFramework::Engine.use_uuid
+
+    create_table :site_framework_domains, **args do |t|
       t.string :name
-      t.integer :site_id
-      t.integer :parent_id, default: nil
+      if SiteFramework::Engine.use_uuid
+        t.uuid :site_id
+        t.uuid :parent_id, default: nil
+      else
+        t.integer :site_id
+        t.integer :parent_id, default: nil
+      end
       t.boolean :alias, default: false
 
       t.timestamps

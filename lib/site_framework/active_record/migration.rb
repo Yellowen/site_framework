@@ -5,7 +5,11 @@ class ActiveRecord::Migration
 
   def site_aware(table_name)
     change_table table_name do |t|
-      t.integer :site_id
+      if SiteFramework::Engine.use_uuid
+        t.uuid :site_id
+      else
+        t.integer :site_id
+      end
     end
 
     add_index table_name, :site_id
