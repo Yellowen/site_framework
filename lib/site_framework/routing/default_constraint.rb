@@ -10,9 +10,10 @@ class SiteFramework::Routing::DefaultConstraint
 
 
   def matches?(request)
+    return true if @matched
     @domain_name = request.host
 
-    if @default_domains.include? @domain_name
+    if @mathced = @default_domains.include?(@domain_name)
       logger.debug('Loading default site configuration')
       patch_request(request)
       true

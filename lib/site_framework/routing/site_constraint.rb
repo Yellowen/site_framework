@@ -20,10 +20,12 @@ class SiteFramework::Routing::SiteConstraint
   end
 
   def matches?(request)
-    if domain_obj = domain(request.host)
+    return true if @domain_obj
+
+    if @domain_obj = domain(request.host)
       @domain_name = request.host
       logger.debug("'#{@domain_name}' matched.")
-      setup(domain_obj, request)
+      setup(@domain_obj, request)
       initialize_site_default_state
 
       true
