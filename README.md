@@ -95,6 +95,12 @@ every where just like this:
 SiteFramework::CurrentState.instance.site
 SiteFramework::CurrentState.instance.domain
 SiteFramework::CurrentState.instance.domain_name
+
+# or
+
+SiteFramework.current_site
+SiteFramework.current_domain
+SiteFramework.current_domain_name
 ```
 
 In case of default site these methods will return `nil`
