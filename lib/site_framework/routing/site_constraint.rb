@@ -20,7 +20,8 @@ class SiteFramework::Routing::SiteConstraint
   end
 
   def matches?(request)
-    return true if @domain_obj
+    return true  if @domain_obj
+    return false if @domain_obj == false
 
     if @domain_obj = domain(request.host)
       @domain_name = request.host
