@@ -15,6 +15,10 @@ class SiteFramework::Routing::DefaultConstraint
 
     @domain_name = request.host
 
+
+    logger.debug("[DEFAULT] REQUEST HOST: #{request.host}")
+
+
     if @mathced = @default_domains.include?(@domain_name)
       logger.debug('Loading default site configuration')
       patch_request(request)

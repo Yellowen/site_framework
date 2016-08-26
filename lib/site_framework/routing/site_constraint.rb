@@ -23,6 +23,9 @@ class SiteFramework::Routing::SiteConstraint
     return true  if @domain_obj
     return false if @domain_obj == false
 
+    logger.debug("[SITE] REQUEST HOST: #{request.host}")
+    logger.debug("DOMAIN: #{domain(request.host)}")
+
     if @domain_obj = domain(request.host)
       @domain_name = request.host
       logger.debug("'#{@domain_name}' matched.")
